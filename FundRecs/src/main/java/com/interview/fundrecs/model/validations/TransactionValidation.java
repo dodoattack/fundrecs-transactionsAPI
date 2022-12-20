@@ -47,8 +47,6 @@ public class TransactionValidation implements TransactionApprovalSteps {
                     if (storedTransactionType.getType().equalsIgnoreCase(this.transaction.getType())) {
                         storedTransactionType.setAmount(String.valueOf(Double.parseDouble(this.transaction.getAmount()) +
                                 Double.parseDouble(storedTransactionType.getAmount())));
-                        //TransactionLogEvents.LogEvents("Date '" +
-                          //      storedTransactionType.getDate() + " and ' Type '" + storedTransactionType.getType() + "' were overwritten");
                         logger.info("The transaction with the unique date '" + storedTransactionType.getDate() + "' and type '"
                                 + storedTransactionType.getType() + "' were overwritten");
                     }
