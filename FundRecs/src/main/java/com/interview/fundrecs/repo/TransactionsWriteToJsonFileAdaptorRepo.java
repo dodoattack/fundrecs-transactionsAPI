@@ -55,8 +55,10 @@ public class TransactionsWriteToJsonFileAdaptorRepo implements TransactionsRepoP
             Reader reader = Files.newBufferedReader(Paths.get(destinationPath));
             Gson gson = new Gson();
             Transaction [] transactions = gson.fromJson(reader, Transaction[].class);
-            System.out.println("The retrieved transactions list size is: " + transactions.length);
-            transactionsAggregate.addTransactions(Arrays.stream(transactions).collect(Collectors.toList()));
+            if(transactions != null) {
+                System.out.println("The retrieved transactions list size is: " + transactions.length);
+                transactionsAggregate.addTransactions(Arrays.stream(transactions).collect(Collectors.toList()));
+            }
             return transactionsAggregate;
         }
         return null;
