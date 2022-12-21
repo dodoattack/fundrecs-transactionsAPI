@@ -1,8 +1,12 @@
 package com.interview.fundrecs.controllers;
 
+import com.interview.fundrecs.StartWebServiceApp;
 import com.interview.fundrecs.model.Transaction;
 import com.interview.fundrecs.model.TransactionsRepoPort;
 import com.interview.fundrecs.repo.TransactionsWriteToJsonFileAdaptorRepo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,12 +17,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/transaction")
+@Lazy
 public class TransactionsController {
+
     private TransactionsRepoPort transactionsRepoPort;
 
     public TransactionsController() throws IOException {
         transactionsRepoPort =
-                new TransactionsWriteToJsonFileAdaptorRepo("TransactionStore/transactions.json");
+                new TransactionsWriteToJsonFileAdaptorRepo(StartWebServiceApp.TRANSACTIONS_STORAGE_PATH);
         transactionsRepoPort.loadAlreadyPersistedTransactions();
         System.out.println(transactionsRepoPort.getTransactionsAggregate().getTransactionsCount() + " transactions retrieved ...");
     }
