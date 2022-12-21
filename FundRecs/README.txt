@@ -21,6 +21,6 @@ Developer notes:
         mvn install
         mvn spring-boot:run
 
-    // How to run the executable
+    // How to run the executable (found in the target folder)
         java -jar FundRecs-1.0-SNAPSHOT.jar <<<PATH_TO_TRANSACTION_STORE_FILE>>>
         e.g. java -jar FundRecs-1.0-SNAPSHOT.jar /Users/dodoattack/IdeaProjects/FundRecs_Interview/FundRecs/TransactionStore/transactions.json
