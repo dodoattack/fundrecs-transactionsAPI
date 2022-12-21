@@ -9,7 +9,7 @@ public class StartWebServiceApp {
     public static String TRANSACTIONS_STORAGE_PATH;
 
     public static void main(String [] args) {
-        if(args[0] == null){
+        if(args.length == 0){
             System.out.println("Please run the app with the first input arg. being the path of the " +
                     "transactions.json storage file");
         } else {
