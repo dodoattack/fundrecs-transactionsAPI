@@ -22,8 +22,8 @@ public class TransactionsWriteToJsonFileAdaptorRepo implements TransactionsRepoP
 
     @Override
     public void saveTransaction(List<Transaction> transaction) {
-        Map<String, List<Transaction>> allTransactions = transactionsAggregate.addTransactions(transaction);
-        Collection<List<Transaction>> transactionsLists = allTransactions.values();
+        transactionsAggregate.addTransactionsWithChecks(transaction);
+        Collection<List<Transaction>> transactionsLists = transactionsAggregate.getTransactions().values();
         List<Transaction> transactions = new ArrayList<>();
         transactionsLists.forEach(list -> {
             list.forEach(tran -> {
@@ -57,7 +57,7 @@ public class TransactionsWriteToJsonFileAdaptorRepo implements TransactionsRepoP
             Transaction [] transactions = gson.fromJson(reader, Transaction[].class);
             if(transactions != null) {
                 System.out.println("The retrieved transactions list size is: " + transactions.length);
-                transactionsAggregate.addTransactions(Arrays.stream(transactions).collect(Collectors.toList()));
+                transactionsAggregate.addTransactionsWithoutChecks(Arrays.stream(transactions).collect(Collectors.toList()));
             }
             return transactionsAggregate;
         }
