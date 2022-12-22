@@ -9,7 +9,7 @@ Developer notes:
     // JSON transaction records - storage location:
         TransactionStore/transactions.json
 
-    // Required configuration change for log4j.properties file
+    // Required configuration change for log4j.properties file (point it to the events.log file in the TransactionStore folder)
         - Change the following property: log4j.appender.file.File=<path>
 
     // Technology versions used/required
